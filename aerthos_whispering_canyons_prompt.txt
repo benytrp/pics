@@ -1,0 +1,13 @@
+Cinematic wide-angle landscape of "The Whispering Canyons of Aerthos". From a wind‑scoured ledge, an oblique wide view reveals a labyrinth of slot canyons and mesas receding into pale bluish haze. Striated sandstone walls in baked terracotta and ochre are veined with glossy, obsidian‑dark seams polished by centuries of sand. Needle spires puncture a twilight gradient—deep blue at the zenith to muted violet near the horizon—where the first stars begin to prickle. Long raking shadows carve S‑curves along dry channels and pocket caves. In the shade, bioluminescent mosses glow in thin ribbons of cyan and emerald; their light travels in soft, wave‑like pulses that seem to ride the wind—visualizing the canyons’ “whisper.” Fine streamers of dust sketch airflow around spire tips and leeward faces; occasional spindrift sheds in silver veils from ledges. Mid‑frame, a thread‑thin rope bridge spans a chasm; two cloaked travelers, fingernail‑small, cross beneath a single amber lantern. Far below, a zigzag of tiny way‑markers—wind chimes on iron pitons—flecks a switchback path. In the deepest fissures, cold mist lifts in silvery sheets, catching cool sky‑bounce while warm rim‑light kisses the upper strata; the scene feels quietly immense, eerily alive.
+
+Camera & lens: 24–28mm, slight tilt‑down; composition ~65% vista / 35% foreground ledge. Deep focus to infinity with only the nearest dust motes softly out of focus.
+Lighting: civil‑twilight; cool skylight fill, warm rim on upper strata; micro‑speculars on obsidian seams; localized cyan/emerald emissive from moss; gentle lantern bloom.
+Scale cues: travelers ≈ 8–12 pixels tall at native 4K; bridge width ≤ 1/200 frame width; lantern bloom radius ≈ 0.8% of frame height.
+Materials: sandstone (striated), volcanic glass seams (wet‑sheen), braided rope, iron pitons with small chimes, fine aeolian dust.
+Color palette (hex): Terracotta #B55438; Ochre #C78C3A; Obsidian #0E0E10; Haze Blue #A9B6C9; Twilight Blue #1E2E6A; Horizon Violet #6B5B8D; Moss Cyan #41D6E8; Moss Emerald #1DBA6C; Lantern Amber #FFC15A; Mist Silver #C9D3DE.
+Negative prompt: no ruins/temples, no sci‑fi props, no crowds, no waterfalls, no hard god‑rays, no neon beyond the moss emissive, no vignette.
+
+Variation toggles:
+• “Wind rising” → increase dust streamers, lengthen spindrift veils.
+• “Stillness” → fewer particles, stronger star visibility.
+• “Storm memory” → darker sky, micro‑pitted rock speculars, distant sheet lightning silhouette (subtle).

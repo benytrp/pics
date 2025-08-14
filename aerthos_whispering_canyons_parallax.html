@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Whispering Canyons of Aerthos — Parallax Preview</title>
+<style>
+  :root{ --scroll:0px; --entropy:1; }
+  body{ margin:0; background:#0E0E10; color:#e9eef5; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu; }
+  header{ padding:12px 16px; font-size:14px; opacity:0.9 }
+  #canyon{ position:relative; width:100vw; height:100vh; overflow:hidden; background:linear-gradient(#1E2E6A,#6B5B8D); }
+  #canyon>img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+               transform:translateY(calc(var(--scroll) * var(--p)));
+               image-rendering:auto; }
+  #canyon>img.whisper{ animation:whisperPulse 3.6s ease-in-out infinite alternate; }
+  #canyon>img[missing]{ filter:grayscale(0.8) brightness(0.6) contrast(1.2); }
+  @keyframes whisperPulse{ 0%{ filter:brightness(calc(1 * var(--entropy))); }
+                           50%{ filter:brightness(calc(1.4 * var(--entropy))); }
+                           100%{ filter:brightness(calc(1 * var(--entropy))); } }
+  .hud{ position:fixed; right:12px; bottom:12px; background:#10131aCC; padding:10px 12px; border-radius:12px; font-size:12px; box-shadow:0 4px 18px #0008; }
+  .hud label{ display:block; margin:6px 0 2px; }
+  .hud input[type="range"]{ width:220px; }
+  .drop{ position:absolute; inset:0; display:grid; place-items:center; color:#C9D3DE88; pointer-events:none; }
+  .drop .cta{ padding:8px 12px; border:1px dashed #C9D3DE55; border-radius:10px; backdrop-filter: blur(3px); }
+</style>
+<header>Drop your 9 PNG layers into this window (or host them beside this file using the names below). Mouse wheel / page scroll drives parallax.</header>
+<div id="canyon" aria-label="Parallax preview of The Whispering Canyons of Aerthos">
+  <img src="aerthos_canyons_01_sky_stars.png" style="--p:0.1" alt="sky & stars" data-name="sky_stars">
+  <img src="aerthos_canyons_02_mesas_haze.png" style="--p:0.25" alt="distant mesas & haze" data-name="mesas_haze">
+  <img src="aerthos_canyons_03_mid_canyons.png" style="--p:0.5" alt="mid canyons" data-name="mid_canyons">
+  <img src="aerthos_canyons_04_fissure_mist.png" style="--p:0.55; mix-blend-mode:screen" alt="fissure mist" data-name="fissure_mist">
+  <img src="aerthos_canyons_05_moss_emissive.png" style="--p:0.6" class="whisper" alt="moss emissive" data-name="moss_emissive">
+  <img src="aerthos_canyons_06_foreground_ledge.png" style="--p:0.9" alt="foreground ledge" data-name="foreground_ledge">
+  <img src="aerthos_canyons_07_bridge_travelers.png" style="--p:0.95" alt="bridge & travelers" data-name="rope_bridge_travelers">
+  <img src="aerthos_canyons_08_waymarkers.png" style="--p:0.95" alt="way-markers" data-name="waymarkers_chimes">
+  <img src="aerthos_canyons_09_particles.png" style="--p:1.1" alt="particles" data-name="particles">
+  <div class="drop"><div class="cta">Drop your PNG layers here to preview</div></div>
+</div>
+<div class="hud">
+  <div><strong>Entropy budget</strong> (emissive & particles)</div>
+  <label for="entropy">Budget</label>
+  <input id="entropy" type="range" min="0.3" max="1.4" step="0.01" value="1.0">
+  <div style="margin-top:6px"><strong>Parallax</strong></div>
+  <label for="gain">Gain</label>
+  <input id="gain" type="range" min="0.02" max="0.20" step="0.01" value="0.05">
+</div>
+<script>
+  const root = document.querySelector('#canyon');
+  const imgs = [...root.querySelectorAll('img')];
+  let gain = 0.05;
+  function markMissing() {
+    imgs.forEach(img => {
+      img.toggleAttribute('missing', !img.complete || img.naturalWidth === 0);
+    });
+  }
+  addEventListener('scroll', () => {
+    document.documentElement.style.setProperty('--scroll', String(scrollY * gain) + 'px');
+  }, { passive:true });
+  document.querySelector('#entropy').addEventListener('input', (e)=>{
+    document.documentElement.style.setProperty('--entropy', e.target.value);
+    // Scale particle opacity with entropy for quick previews:
+    imgs.find(i=>i.dataset.name==='particles')?.style.setProperty('opacity', Math.min(1, e.target.value));
+  });
+  document.querySelector('#gain').addEventListener('input', (e)=>{ gain = Number(e.target.value); });
+  // Drag & drop support for quick previews
+  root.addEventListener('dragover', e => { e.preventDefault(); });
+  root.addEventListener('drop', e => {
+    e.preventDefault();
+    const files = [...e.dataTransfer.files];
+    files.forEach(file => {
+      const lower = file.name.toLowerCase();
+      const map = [
+        'aerthos_canyons_01_sky_stars.png',
+        'aerthos_canyons_02_mesas_haze.png',
+        'aerthos_canyons_03_mid_canyons.png',
+        'aerthos_canyons_04_fissure_mist.png',
+        'aerthos_canyons_05_moss_emissive.png',
+        'aerthos_canyons_06_foreground_ledge.png',
+        'aerthos_canyons_07_bridge_travelers.png',
+        'aerthos_canyons_08_waymarkers.png',
+        'aerthos_canyons_09_particles.png'
+      ];
+      const idx = map.findIndex(n => lower.endsWith(n));
+      if (idx >= 0) {
+        const reader = new FileReader();
+        reader.onload = (ev) => { imgs[idx].src = ev.target.result; markMissing(); };
+        reader.readAsDataURL(file);
+      }
+    });
+  });
+  // Initial missing markers
+  imgs.forEach(i => i.addEventListener('error', markMissing));
+  window.addEventListener('load', markMissing);
+</script>

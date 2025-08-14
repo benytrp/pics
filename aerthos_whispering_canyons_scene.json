@@ -1,0 +1,89 @@
+{
+  "id": "aerthos_whispering_canyons_v1",
+  "title": "The Whispering Canyons of Aerthos",
+  "size": [
+    4096,
+    2304
+  ],
+  "palette": [
+    "#B55438",
+    "#C78C3A",
+    "#0E0E10",
+    "#A9B6C9",
+    "#1E2E6A",
+    "#6B5B8D",
+    "#41D6E8",
+    "#1DBA6C",
+    "#FFC15A",
+    "#C9D3DE"
+  ],
+  "layers": [
+    {
+      "name": "sky_stars",
+      "file": "aerthos_canyons_01_sky_stars.png",
+      "parallax": 0.1
+    },
+    {
+      "name": "mesas_haze",
+      "file": "aerthos_canyons_02_mesas_haze.png",
+      "parallax": 0.25
+    },
+    {
+      "name": "mid_canyons",
+      "file": "aerthos_canyons_03_mid_canyons.png",
+      "parallax": 0.5
+    },
+    {
+      "name": "fissure_mist",
+      "file": "aerthos_canyons_04_fissure_mist.png",
+      "parallax": 0.55,
+      "blend": "screen"
+    },
+    {
+      "name": "moss_emissive",
+      "file": "aerthos_canyons_05_moss_emissive.png",
+      "parallax": 0.6,
+      "fx": "whisper_pulse"
+    },
+    {
+      "name": "foreground_ledge",
+      "file": "aerthos_canyons_06_foreground_ledge.png",
+      "parallax": 0.9
+    },
+    {
+      "name": "rope_bridge_travelers",
+      "file": "aerthos_canyons_07_bridge_travelers.png",
+      "parallax": 0.95,
+      "emissive": [
+        "lantern"
+      ]
+    },
+    {
+      "name": "waymarkers_chimes",
+      "file": "aerthos_canyons_08_waymarkers.png",
+      "parallax": 0.95
+    },
+    {
+      "name": "particles",
+      "file": "aerthos_canyons_09_particles.png",
+      "parallax": 1.1,
+      "blend": "add"
+    }
+  ],
+  "scale_cues": {
+    "traveler_px": 10,
+    "lantern_bloom_pct_h": 0.8
+  },
+  "fx": {
+    "whisper_pulse": {
+      "omega": 1.0,
+      "kappa": 0.3,
+      "advect": 0.02
+    }
+  },
+  "variants": [
+    "wind_rising",
+    "stillness",
+    "storm_memory"
+  ]
+}
